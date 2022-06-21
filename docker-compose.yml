@@ -1,0 +1,28 @@
+version: "3.7"
+
+services:
+  mysqldb:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    container_name: db-organograma
+    image: mysql_organograma
+    env_file: ./.env
+    command: --default-authentication-plugin=mysql_native_password
+    restart: unless-stopped
+    environment:
+      - MYSQL_ROOT_PASSWORD=$MYSQLDB_ROOT_PASSWORD
+      - MYSQL_DATABASE=$MYSQLDB_DATABASE
+    ports:
+      - $MYSQLDB_LOCAL_PORT:$MYSQLDB_DOCKER_PORT
+    volumes:
+      - acambinza_volume_db:/var/lib/mysql
+    networks:
+      - acambinza
+
+networks:
+  acambinza:
+    driver: bridge
+
+volumes:
+  acambinza_volume_db:
