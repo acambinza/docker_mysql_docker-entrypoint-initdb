@@ -19,4 +19,13 @@ como por exemplo: criar um banco de dados e rodar alguns seeds.
 
 
 
+### No dockerfile 
+- no Dockerfile, tem o seguinte CMD
+
+COPY ./dockercompose/db/sql/*.sql /docker-entrypoint-initdb.d/
+
+- copiamos os nosso script do "./dockercompose/db/sql/*.sql" para "/docker-entrypoint-initdb.d/"
+- ao fazer o build do projecto ele vai rodar o script que está no entrypoint-initdb
+
+
 ## COLA AÌ UM STAR NO PROJECTO
